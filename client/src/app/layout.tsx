@@ -1,0 +1,40 @@
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
+import { Toaster } from "@/components/ui/toaster"
+import { Toaster as Sonner } from "@/components/ui/sonner"
+import { TooltipProvider } from "@/components/ui/tooltip"
+import BackToTop from '@/components/BackToTop'
+import ClientProviders from '@/components/ClientProviders'
+
+const inter = Inter({ subsets: ['latin'] })
+
+export const metadata: Metadata = {
+  title: 'Đại học Nam Cần Thơ',
+  description: 'Trang web chính thức của Đại học Nam Cần Thơ',
+  metadataBase: new URL('http://localhost:3000'),
+  openGraph: {
+    title: 'Đại học Nam Cần Thơ',
+    description: 'Trang web chính thức của Đại học Nam Cần Thơ',
+    images: ['/src/assets/nctu-logo.png'],
+  },
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="vi">
+      <body className={inter.className}>
+        <ClientProviders>
+          <Toaster />
+          <Sonner />
+          {children}
+          <BackToTop />
+        </ClientProviders>
+      </body>
+    </html>
+  )
+} 
