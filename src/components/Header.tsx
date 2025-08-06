@@ -1,23 +1,23 @@
-import { useState } from 'react';
-import { Menu, X, Phone, Globe } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import nctuLogo from '@/assets/nctu-logo.png';
+import { useState } from "react";
+import { Menu, X, Phone, Globe, HomeIcon, SearchIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import nctuLogo from "@/assets/nctu-logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [language, setLanguage] = useState('vi');
+  const [language, setLanguage] = useState("vi");
 
   const navItems = [
-    { name: 'Trang chủ', href: '#home' },
-    { name: 'Giới thiệu', href: '#about' },
-    { name: 'Đào tạo', href: '#programs' },
-    { name: 'Nghiên cứu', href: '#research' },
-    { name: 'Tin tức', href: '#news' },
-    { name: 'Liên hệ', href: '#contact' }
+    { name: "Trang chủ", href: "#home" },
+    { name: "Giới thiệu", href: "#about" },
+    { name: "Đào tạo", href: "#programs" },
+    { name: "Nghiên cứu", href: "#research" },
+    { name: "Tin tức", href: "#news" },
+    { name: "Liên hệ", href: "#contact" },
   ];
 
   const toggleLanguage = () => {
-    setLanguage(language === 'vi' ? 'en' : 'vi');
+    setLanguage(language === "vi" ? "en" : "vi");
   };
 
   return (
@@ -27,18 +27,27 @@ const Header = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center text-sm">
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
-                <span>HOTLINE: 0939 257 838</span>
-              </div>
+              <div className="flex items-center gap-2"></div>
             </div>
             <div className="flex items-center gap-4">
-              <button 
+              <button className="flex items-center gap-2 hover:text-university-gold transition-colors">
+                <HomeIcon className="w-4 h-4" />
+              </button>
+              <button className="flex items-center gap-2 hover:text-university-gold transition-colors">
+                <span>Sinh viên</span>
+              </button>
+              <button className="flex items-center gap-2 hover:text-university-gold transition-colors">
+                <span>Cán bộ - Giáo viên</span>
+              </button>
+              <button className="flex items-center gap-2 hover:text-university-gold transition-colors">
+                <SearchIcon className="w-4 h-4" />
+              </button>
+              <button
                 onClick={toggleLanguage}
                 className="flex items-center gap-2 hover:text-university-gold transition-colors"
               >
                 <Globe className="w-4 h-4" />
-                <span>{language === 'vi' ? 'English' : 'Tiếng Việt'}</span>
+                <span>{language === "vi" ? "English" : "Tiếng Việt"}</span>
               </button>
             </div>
           </div>
@@ -50,9 +59,9 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-4">
-            <img 
-              src={nctuLogo} 
-              alt="NCTU Logo" 
+            <img
+              src={nctuLogo}
+              alt="NCTU Logo"
               className="w-16 h-16 object-contain"
             />
             <div>
@@ -85,7 +94,11 @@ const Header = () => {
             className="lg:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </Button>
         </div>
 

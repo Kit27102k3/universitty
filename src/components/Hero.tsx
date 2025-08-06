@@ -35,7 +35,7 @@ const Hero = () => {
               Tuyển sinh 2024
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+            <Button size="lg" variant="outline" className="border-white text-black hover:bg-white/10 hover:text-white">
               Xem thêm thông tin
             </Button>
           </div>
