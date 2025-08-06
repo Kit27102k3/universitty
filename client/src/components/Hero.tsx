@@ -1,78 +1,93 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Users, BookOpen, Award } from "lucide-react";
-import campusHero from "@/assets/campus-hero.jpg";
+"use client";
+
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const Hero = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const banners = [
+    "/banner-home-3.jpg",
+    "/banner-sdg.jpg",
+    "/banner-totnghiep.jpg",
+    "/banner-hocbong.jpg",
+  ];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % banners.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + banners.length) % banners.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
+  // Auto-play
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section id="home" className="relative min-h-screen flex items-center">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${campusHero.src})` }}
-      >
-        <div className="absolute inset-0 bg-blue-500 opacity-80"></div>
-      </div>
-
-      <div className="relative z-10 container mx-auto px-4 py-20">
-        <div className="max-w-4xl mx-auto text-center text-white">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Trường Đại học
-            <span className="block text-university-gold">Nam Cần Thơ</span>
-          </h1>
-
-          <p className="text-xl md:text-2xl mb-8 leading-relaxed opacity-90">
-            Xây dựng tri thức - Phát triển bền vững
-          </p>
-
-          <p className="text-lg mb-12 max-w-3xl mx-auto opacity-80">
-            Trường Đại học Nam Cần Thơ (NCTU) cam kết cung cấp chất lượng giáo
-            dục đại học hàng đầu, đào tạo nguồn nhân lực chất lượng cao phục vụ
-            sự phát triển kinh tế - xã hội của đất nước.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Button
-              size="lg"
-              className="bg-yellow-400 hover:bg-yellow-400/90 text-primary font-semibold px-8"
+    <section id="home" className="relative  overflow-hidden">
+      <div className="relative w-full h-[500px]">
+        {banners.map((banner, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+              index === currentSlide
+                ? "opacity-100 scale-100"
+                : "opacity-0 scale-105"
+            }`}
+          >
+            <div
+              className="w-full h-[500px] bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: `url(${banner})` }}
             >
-              Tuyển sinh 2024
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white text-black hover:bg-white/10 hover:text-white"
-            >
-              Xem thêm thông tin
-            </Button>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="flex justify-center mb-4">
-                <Users className="w-12 h-12 text-yellow-400" />
-              </div>
-              <div className="text-3xl font-bold mb-2">15,000+</div>
-              <div className="text-lg opacity-80">Sinh viên</div>
-            </div>
-
-            <div className="text-center">
-              <div className="flex justify-center mb-4">
-                <BookOpen className="w-12 h-12 text-yellow-400" />
-              </div>
-              <div className="text-3xl font-bold mb-2">50+</div>
-              <div className="text-lg opacity-80">Chương trình đào tạo</div>
-            </div>
-
-            <div className="text-center">
-              <div className="flex justify-center mb-4">
-                <Award className="w-12 h-12 text-yellow-400" />
-              </div>
-              <div className="text-3xl font-bold mb-2">25</div>
-              <div className="text-lg opacity-80">Năm thành lập</div>
+              <div className="absolute inset-0 "></div>
             </div>
           </div>
+        ))}
+
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-110"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-110"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
+
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-3">
+          {banners.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentSlide
+                  ? "bg-white scale-125"
+                  : "bg-white/50 hover:bg-white/75"
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Progress Bar */}
+        <div className="absolute bottom-0 left-0 w-full h-1 bg-white/20 z-10">
+          <div
+            className="h-[500px] bg-white transition-all duration-1000 ease-linear"
+            style={{
+              width: `${((currentSlide + 1) / banners.length) * 100}%`,
+            }}
+          />
         </div>
       </div>
     </section>

@@ -13,10 +13,14 @@ export const metadata: Metadata = {
   title: 'Đại học Nam Cần Thơ',
   description: 'Trang web chính thức của Đại học Nam Cần Thơ',
   metadataBase: new URL('http://localhost:3000'),
+  icons: {
+    icon: '/nctu-logo.png',
+    apple: '/nctu-logo.png',
+  },
   openGraph: {
     title: 'Đại học Nam Cần Thơ',
     description: 'Trang web chính thức của Đại học Nam Cần Thơ',
-    images: ['/src/assets/nctu-logo.png'],
+    images: ['/nctu-logo.png'],
   },
 }
 

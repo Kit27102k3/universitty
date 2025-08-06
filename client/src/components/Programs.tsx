@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,9 +10,45 @@ import {
   Globe,
   Palette,
   ArrowRight,
+  BookOpen,
+  MapPin,
+  Star,
+  GraduationCap,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const Programs = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const statsImages = [
+    "/banner-home-3.jpg",
+    "/banner-sdg.jpg",
+    "/banner-totnghiep.jpg",
+    "/banner-hocbong.jpg",
+  ];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % statsImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(
+      (prev) => (prev - 1 + statsImages.length) % statsImages.length
+    );
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
+  // Auto-play
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   const programs = [
     {
       icon: Computer,
@@ -63,7 +101,30 @@ const Programs = () => {
   ];
 
   return (
-    <section id="programs" className="py-20 bg-university-gray/30">
+    <section id="programs" className="-mt-10 bg-university-gray/30">
+      <div className="relative w-full flex justify-center z-30  mb-16">
+        <div className="flex gap-4 w-full max-w-4xl px-4">
+          <button className="flex-1 bg-white border-2 border-red-600 text-red-600 px-4 py-3 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-all duration-300 hover:scale-105 shadow-lg">
+            Sinh viên
+          </button>
+          <button className="flex-1 bg-white border-2 border-red-600 text-red-600 px-4 py-3 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-all duration-300 hover:scale-105 shadow-lg">
+            Tuyển sinh 2025
+          </button>
+          <button className="flex-1 bg-white border-2 border-red-600 text-red-600 px-4 py-3 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-all duration-300 hover:scale-105 shadow-lg">
+            <div className="text-center">
+              <div>Tạp chí</div>
+              <div>khoa học</div>
+            </div>
+          </button>
+          <button className="flex-1 bg-white border-2 border-red-600 text-red-600 px-4 py-3 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-all duration-300 hover:scale-105 shadow-lg">
+            Tuyển dụng
+          </button>
+          <button className="flex-1 bg-red-600 border-2 border-red-600 text-white px-4 py-3 rounded-lg font-semibold hover:bg-red-700 transition-all duration-300 hover:scale-105 shadow-lg">
+            Xét tuyển
+          </button>
+        </div>
+      </div>
+
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-primary mb-4">
@@ -120,6 +181,128 @@ const Programs = () => {
           >
             Xem tất cả chương trình
           </Button>
+        </div>
+      </div>
+
+      {/* Thống kê - Những dấu ấn khó quên */}
+      <div className="container mx-auto px-4 mt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Bên trái - Slideshow hình */}
+          <div className="relative h-[400px] rounded-lg overflow-hidden">
+            {statsImages.map((image, index) => (
+              <div
+                key={index}
+                className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                  index === currentSlide
+                    ? "opacity-100 scale-100"
+                    : "opacity-0 scale-105"
+                }`}
+              >
+                <div
+                  className="w-full h-full bg-cover bg-center bg-no-repeat"
+                  style={{ backgroundImage: `url(${image})` }}
+                >
+                  <div className="absolute inset-0 bg-black/20"></div>
+                </div>
+              </div>
+            ))}
+
+            <button
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-110"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            <button
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-110"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex space-x-2">
+              {statsImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === currentSlide
+                      ? "bg-white scale-125"
+                      : "bg-white/50 hover:bg-white/75"
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Progress Bar */}
+            <div className="absolute bottom-0 left-0 w-full h-1 bg-white/20 z-20">
+              <div
+                className="h-full bg-white transition-all duration-1000 ease-linear"
+                style={{
+                  width: `${((currentSlide + 1) / statsImages.length) * 100}%`,
+                }}
+              />
+            </div>
+          </div>
+          <div className="flex flex-col">
+            <div className="text-center mb-2">
+              <h2 className="text-4xl font-bold text-primary mb-4">
+                Những dấu ấn khó quên trong{" "}
+                <span className="text-red-600">12 năm</span> gắn bó với sứ mệnh
+                và phát triển
+              </h2>
+            </div>
+            {/* Bên phải - Thống kê */}
+            <div className="grid grid-cols-2 gap-6">
+              {/* Sinh viên */}
+
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                  <BookOpen className="w-8 h-8 text-primary" />
+                </div>
+                <div className="text-3xl font-bold text-red-600 mb-2">
+                  38.000+
+                </div>
+                <div className="text-sm text-muted-foreground">Người học</div>
+              </div>
+
+              {/* Khuôn viên */}
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                  <MapPin className="w-8 h-8 text-primary" />
+                </div>
+                <div className="text-3xl font-bold text-red-600 mb-2">
+                  260.000+
+                </div>
+                <div className="text-sm text-muted-foreground">
+                  Khuôn viên trường (m²)
+                </div>
+              </div>
+
+              {/* Xếp hạng VNUR */}
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                  <Star className="w-8 h-8 text-primary" />
+                </div>
+                <div className="text-3xl font-bold text-red-600 mb-2">61</div>
+                <div className="text-sm text-muted-foreground">
+                  Bảng xếp hạng VNUR-2024
+                </div>
+              </div>
+
+              {/* Sinh viên quốc tế */}
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                  <GraduationCap className="w-8 h-8 text-primary" />
+                </div>
+                <div className="text-3xl font-bold text-red-600 mb-2">80</div>
+                <div className="text-sm text-muted-foreground">
+                  Sinh viên quốc tế
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
