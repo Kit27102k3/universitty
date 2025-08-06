@@ -1,0 +1,2 @@
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+duongdan/tenfilelon.ext filter=lfs diff=lfs merge=lfs -text

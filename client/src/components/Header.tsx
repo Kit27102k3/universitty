@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Menu, X, Phone, Globe, HomeIcon, SearchIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import nctuLogo from "@/assets/nctu-logo.png";
+import Image from "next/image";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -60,10 +60,11 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-4">
-            <img
-              src={nctuLogo.src}
+            <Image
+              src="/nctu-logo.png" 
               alt="NCTU Logo"
-              className="w-16 h-16 object-contain"
+              width={60}
+              height={60}
             />
             <div>
               <h1 className="text-xl font-bold text-primary">

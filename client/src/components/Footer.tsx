@@ -1,6 +1,6 @@
 import { MapPin, Phone, Mail, Globe, Facebook, Youtube, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import nctuLogo from '@/assets/nctu-logo.png';
+import Image from 'next/image';
 
 const Footer = () => {
   const quickLinks = [
@@ -28,9 +28,11 @@ const Footer = () => {
           {/* Logo and Contact */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <img 
-                src={nctuLogo} 
+              <Image 
+                src="/nctu-logo.png" 
                 alt="NCTU Logo" 
+                width={60}
+                height={60}
                 className="w-12 h-12 object-contain bg-white rounded-full p-1"
               />
               <div>
