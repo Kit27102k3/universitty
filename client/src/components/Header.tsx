@@ -66,12 +66,12 @@ const Header = () => {
               width={60}
               height={60}
             />
-            <div>
+            <div className="flex flex-col items-center justify-center">
               <h1 className="text-xl font-bold text-primary">
-                TRƯỜNG ĐẠI HỌC NAM CẦN THƠ
+                NAM CAN THO
               </h1>
-              <p className="text-sm text-muted-foreground">
-                Nam Can Tho University
+              <p className="text-xl text-primary font-bold">
+                UNIVERSITY
               </p>
             </div>
           </div>
