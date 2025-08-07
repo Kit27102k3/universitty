@@ -16,6 +16,8 @@ import {
   LogOut,
   Settings,
   User as UserIcon,
+  CreditCard,
+  GraduationCap,
 } from "lucide-react";
 import Image from "next/image";
 import Footer from "@/components/Footer";
@@ -121,40 +123,153 @@ export default function StudentPortalPage() {
               <div className="relative">
                 <button
                   onClick={() => setShowUserDropdown(!showUserDropdown)}
-                  className="flex items-center gap-2 text-gray-600 hover:text-blue-600"
+                  className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-200"
                 >
                   <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
-                    <UserIcon className="w-5 h-5 text-blue-600" />
+                    <Image
+                      src={student.avatar}
+                      alt="avatar"
+                      width={32}
+                      height={32}
+                      className="object-cover w-full h-full rounded-full"
+                    />
                   </div>
-                  <span className="text-sm">{student.name}</span>
-                  <ChevronDown className="w-4 h-4" />
+                  <span className="text-sm font-medium">{student.name}</span>
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform duration-200 ${
+                      showUserDropdown ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
 
-                {/* Dropdown Menu */}
-                {showUserDropdown && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border z-50">
-                    <div className="py-1">
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                      >
-                        Thông tin cá nhân
-                      </a>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                      >
-                        Đổi mật khẩu
-                      </a>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                      >
-                        Đăng xuất
-                      </a>
+                {/* Dropdown Menu with Animation */}
+                <div
+                  className={`absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 z-50 transition-all duration-300 ease-in-out ${
+                    showUserDropdown
+                      ? "opacity-100 transform translate-y-0 max-h-96"
+                      : "opacity-0 transform -translate-y-2 max-h-0 pointer-events-none"
+                  }`}
+                >
+                  {/* User Info Header */}
+                  <div className="px-4 py-3 border-b border-gray-100 bg-gray-50">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                        <Image
+                          src={student.avatar}
+                          alt="avatar"
+                          width={32}
+                          height={32}
+                          className="object-cover w-full h-full rounded-full"
+                        />
+                      </div>
+                      <div>
+                        <div className="font-medium text-gray-900 text-sm">
+                          {student.name}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          MSSV: {student.id}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                )}
+                  {/* Menu Items with custom scroll */}
+                  <div
+                    className="py-1 pr-3 overflow-y-auto max-h-80"
+                    style={{ 
+                      transition: 'max-height 0.3s',
+                      scrollbarWidth: 'thin',
+                      scrollbarColor: '#d1d5db transparent',
+                      msOverflowStyle: 'none',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.scrollbarColor = '#9ca3af transparent';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.scrollbarColor = '#d1d5db transparent';
+                    }}
+                  >
+                    <style jsx>{`
+                      div::-webkit-scrollbar {
+                        width: 6px;
+                      }
+                      div::-webkit-scrollbar-track {
+                        background: transparent;
+                      }
+                      div::-webkit-scrollbar-thumb {
+                        background: #d1d5db;
+                        border-radius: 3px;
+                        transition: background 0.2s;
+                      }
+                      div::-webkit-scrollbar-thumb:hover {
+                        background: #9ca3af;
+                      }
+                    `}</style>
+                    <a
+                      href="#"
+                      className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150"
+                    >
+                      <UserIcon className="w-4 h-4" />
+                      Thông tin sinh viên
+                    </a>
+                    <a
+                      href="#"
+                      className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150"
+                    >
+                      <Calendar className="w-4 h-4" />
+                      Lịch học theo tuần
+                    </a>
+                    <a
+                      href="#"
+                      className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150"
+                    >
+                      <FileText className="w-4 h-4" />
+                      Lịch thi theo tuần
+                    </a>
+                    <a
+                      href="#"
+                      className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150"
+                    >
+                      <BookOpen className="w-4 h-4" />
+                      Kết quả học tập
+                    </a>
+                    <a
+                      href="#"
+                      className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150"
+                    >
+                      <BarChart2 className="w-4 h-4" />
+                      Tiến độ học tập
+                    </a>
+                    <a
+                      href="#"
+                      className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150"
+                    >
+                      <CreditCard className="w-4 h-4" />
+                      Tra cứu công nợ
+                    </a>
+                    <a
+                      href="#"
+                      className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150"
+                    >
+                      <GraduationCap className="w-4 h-4" />
+                      Chương trình khung
+                    </a>
+                    <div className="border-t border-gray-100 my-1"></div>
+                    <a
+                      href="#"
+                      className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150"
+                    >
+                      <Settings className="w-4 h-4" />
+                      Cài đặt
+                    </a>
+                    <a
+                      href="#"
+                      className="flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors duration-150"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      Đăng xuất
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -167,25 +282,72 @@ export default function StudentPortalPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           {/* Cột trái: Thông tin sinh viên */}
           <div className="bg-white rounded-lg shadow p-6 h-full flex flex-col justify-between">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">Thông tin sinh viên</h2>
+            <h2 className="text-xl font-bold text-gray-800 mb-4">
+              Thông tin sinh viên
+            </h2>
             <div className="flex gap-6">
               <div className="flex-shrink-0 flex flex-col items-center">
                 <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-blue-200 mb-2">
-                  <Image src={student.avatar} alt="avatar" width={96} height={96} className="object-cover w-full h-full" />
+                  <Image
+                    src={student.avatar}
+                    alt="avatar"
+                    width={96}
+                    height={96}
+                    className="object-cover w-full h-full"
+                  />
                 </div>
-                <a href="#" className="text-blue-600 text-sm hover:underline">Xem chi tiết</a>
+                <a href="#" className="text-blue-600 text-sm hover:underline">
+                  Xem chi tiết
+                </a>
               </div>
               <div className="flex-1 grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
-                <div><span className="font-semibold">MSSV:</span> <span className="text-blue-700 font-semibold">{student.id}</span></div>
-                <div><span className="font-semibold">Lớp học:</span> {student.class}</div>
-                <div><span className="font-semibold">Họ tên:</span> {student.name}</div>
-                <div><span className="font-semibold">Khóa học:</span> {student.course}</div>
-                <div><span className="font-semibold">Giới tính:</span> {student.gender}</div>
-                <div><span className="font-semibold">Bậc đào tạo:</span> {student.level}</div>
-                <div><span className="font-semibold">Ngày sinh:</span> <span className="font-semibold text-blue-700">{student.dob}</span></div>
-                <div><span className="font-semibold">Loại hình đào tạo:</span> {student.type}</div>
-                <div><span className="font-semibold">Nơi sinh:</span> <span className="font-semibold text-blue-700">{student.pob}</span></div>
-                <div><span className="font-semibold">Ngành:</span> <span className="font-semibold text-blue-700">{student.major}</span></div>
+                <div>
+                  <span className="font-semibold">MSSV:</span>{" "}
+                  <span className="text-blue-700 font-semibold">
+                    {student.id}
+                  </span>
+                </div>
+                <div>
+                  <span className="font-semibold">Lớp học:</span>{" "}
+                  {student.class}
+                </div>
+                <div>
+                  <span className="font-semibold">Họ tên:</span> {student.name}
+                </div>
+                <div>
+                  <span className="font-semibold">Khóa học:</span>{" "}
+                  {student.course}
+                </div>
+                <div>
+                  <span className="font-semibold">Giới tính:</span>{" "}
+                  {student.gender}
+                </div>
+                <div>
+                  <span className="font-semibold">Bậc đào tạo:</span>{" "}
+                  {student.level}
+                </div>
+                <div>
+                  <span className="font-semibold">Ngày sinh:</span>{" "}
+                  <span className="font-semibold text-blue-700">
+                    {student.dob}
+                  </span>
+                </div>
+                <div>
+                  <span className="font-semibold">Loại hình đào tạo:</span>{" "}
+                  {student.type}
+                </div>
+                <div>
+                  <span className="font-semibold">Nơi sinh:</span>{" "}
+                  <span className="font-semibold text-blue-700">
+                    {student.pob}
+                  </span>
+                </div>
+                <div>
+                  <span className="font-semibold">Ngành:</span>{" "}
+                  <span className="font-semibold text-blue-700">
+                    {student.major}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -193,22 +355,40 @@ export default function StudentPortalPage() {
           <div className="flex flex-col gap-6 h-full">
             {/* Dòng trên: Nhắc nhở mới, chưa xem */}
             <div className="bg-white rounded-lg shadow p-6 flex-1 flex flex-col justify-center text-center">
-              <div className="text-3xl font-bold text-blue-700">{reminders}</div>
-              <div className="text-gray-600 text-sm mb-2">Nhắc nhở mới, chưa xem</div>
-              <a href="#" className="text-blue-600 text-xs hover:underline">Xem chi tiết</a>
+              <div className="text-3xl font-bold text-blue-700">
+                {reminders}
+              </div>
+              <div className="text-gray-600 text-sm mb-2">
+                Nhắc nhở mới, chưa xem
+              </div>
+              <a href="#" className="text-blue-600 text-xs hover:underline">
+                Xem chi tiết
+              </a>
             </div>
             {/* Dòng dưới: 2 box ngang nhau */}
             <div className="grid grid-cols-2 gap-6 flex-1">
               <div className="bg-white rounded-lg shadow p-6 text-center flex flex-col justify-center">
-                <div className="text-3xl font-bold text-blue-700">{schedule}</div>
-                <div className="text-gray-600 text-sm mb-2">Lịch học trong tuần</div>
-                <a href="#" className="text-blue-600 text-xs hover:underline">Xem chi tiết</a>
+                <div className="text-3xl font-bold text-blue-700">
+                  {schedule}
+                </div>
+                <div className="text-gray-600 text-sm mb-2">
+                  Lịch học trong tuần
+                </div>
+                <a href="#" className="text-blue-600 text-xs hover:underline">
+                  Xem chi tiết
+                </a>
                 <Calendar className="w-5 h-5 text-blue-300 mx-auto mt-1" />
               </div>
               <div className="bg-white rounded-lg shadow p-6 text-center flex flex-col justify-center">
-                <div className="text-3xl font-bold text-orange-600">{exams}</div>
-                <div className="text-gray-600 text-sm mb-2">Lịch thi trong tuần</div>
-                <a href="#" className="text-orange-600 text-xs hover:underline">Xem chi tiết</a>
+                <div className="text-3xl font-bold text-orange-600">
+                  {exams}
+                </div>
+                <div className="text-gray-600 text-sm mb-2">
+                  Lịch thi trong tuần
+                </div>
+                <a href="#" className="text-orange-600 text-xs hover:underline">
+                  Xem chi tiết
+                </a>
                 <Calendar className="w-5 h-5 text-orange-300 mx-auto mt-1" />
               </div>
             </div>
@@ -219,7 +399,9 @@ export default function StudentPortalPage() {
           {/* Cột 1: Kết quả học tập */}
           <section className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold text-gray-800">Kết quả học tập</h2>
+              <h2 className="text-xl font-bold text-gray-800">
+                Kết quả học tập
+              </h2>
               <div className="relative">
                 <select className="appearance-none border border-gray-300 rounded px-3 py-1 text-sm focus:outline-none">
                   <option>HK1(2021-2022)</option>
@@ -233,13 +415,23 @@ export default function StudentPortalPage() {
                 <div key={index} className="flex-1 flex flex-col items-center">
                   <div className="relative w-full h-40 flex items-end">
                     {/* Your Score Bar */}
-                    <div className="w-full bg-orange-500 rounded-t" style={{ height: `${(data.yourScore / maxScore) * 100}%` }}></div>
+                    <div
+                      className="w-full bg-orange-500 rounded-t"
+                      style={{
+                        height: `${(data.yourScore / maxScore) * 100}%`,
+                      }}
+                    ></div>
                     {/* Average Score Line */}
-                    <div className="absolute w-full border-t-2 border-yellow-400" style={{ bottom: `${(data.avgScore / maxScore) * 100}%` }}>
+                    <div
+                      className="absolute w-full border-t-2 border-yellow-400"
+                      style={{ bottom: `${(data.avgScore / maxScore) * 100}%` }}
+                    >
                       <div className="w-3 h-3 bg-yellow-400 rounded-full -mt-1.5 mx-auto"></div>
                     </div>
                   </div>
-                  <div className="text-xs text-gray-600 mt-2">{data.period}</div>
+                  <div className="text-xs text-gray-600 mt-2">
+                    {data.period}
+                  </div>
                 </div>
               ))}
             </div>
@@ -257,20 +449,35 @@ export default function StudentPortalPage() {
           </section>
           {/* Cột 2: Tiến độ học tập */}
           <section className="bg-white rounded-lg shadow p-6 flex flex-col items-center">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Tiến độ học tập</h3>
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">
+              Tiến độ học tập
+            </h3>
             <div className="relative flex items-center justify-center">
               <svg width="120" height="120" viewBox="0 0 120 120">
                 <circle cx="60" cy="60" r="50" fill="#e5e7eb" />
-                <circle cx="60" cy="60" r="50" fill="none" stroke="#22c55e" strokeWidth="16" strokeDasharray="314" strokeDashoffset="0" />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="50"
+                  fill="none"
+                  stroke="#22c55e"
+                  strokeWidth="16"
+                  strokeDasharray="314"
+                  strokeDashoffset="0"
+                />
                 <circle cx="60" cy="60" r="40" fill="#fff" />
               </svg>
-              <div className="absolute text-lg font-bold text-green-600">161/161</div>
+              <div className="absolute text-lg font-bold text-green-600">
+                161/161
+              </div>
             </div>
           </section>
           {/* Cột 3: Lớp học phần */}
           <section className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-800">Lớp học phần</h3>
+              <h3 className="text-lg font-semibold text-gray-800">
+                Lớp học phần
+              </h3>
               <div className="relative">
                 <select className="appearance-none border border-gray-300 rounded px-3 py-1 text-sm focus:outline-none">
                   <option>HK1(2021-2022)</option>
@@ -281,9 +488,13 @@ export default function StudentPortalPage() {
             <div className="space-y-3">
               {courses.map((course, index) => (
                 <div key={index} className="border-b border-gray-100 pb-2">
-                  <div className="text-blue-600 text-sm font-medium">{course.code}</div>
+                  <div className="text-blue-600 text-sm font-medium">
+                    {course.code}
+                  </div>
                   <div className="text-gray-800 text-sm">{course.name}</div>
-                  <div className="text-gray-600 text-xs">{course.credits} tín chỉ</div>
+                  <div className="text-gray-600 text-xs">
+                    {course.credits} tín chỉ
+                  </div>
                 </div>
               ))}
             </div>
