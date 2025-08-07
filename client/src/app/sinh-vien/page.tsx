@@ -43,7 +43,8 @@ export default function SinhVienPage() {
     {
       icon: FileText,
       title: t('student.tools.studentPortal'),
-      description: t('student.tools.studentPortalDesc')
+      description: t('student.tools.studentPortalDesc'),
+      href: '/sinh-vien/portal'
     },
     {
       icon: Wifi,
@@ -160,6 +161,7 @@ export default function SinhVienPage() {
                   <div 
                     key={index} 
                     className="bg-white rounded-lg shadow-md p-4 text-center hover:shadow-lg transition-shadow cursor-pointer group"
+                    onClick={() => tool.href && window.location.assign(tool.href)}
                   >
                     <div className="w-16 h-16 mx-auto mb-3 bg-red-50 rounded-lg flex items-center justify-center group-hover:bg-red-100 transition-colors">
                       <tool.icon className="w-8 h-8 text-red-600" />

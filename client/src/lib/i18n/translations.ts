@@ -13,7 +13,35 @@ export const translations = {
       search: "Tìm kiếm",
       searchPlaceholder: "Tìm kiếm...",
       english: "English",
-      vietnamese: "Tiếng Việt"
+      vietnamese: "Tiếng Việt",
+      lookup: "Tra cứu"
+    },
+
+    // Lookup page
+    lookup: {
+      title: "Tra cứu",
+      subtitle: "Tra cứu thông tin văn bằng, chứng chỉ",
+      tabs: {
+        degree: "Văn bằng",
+        itCertificate: "Chứng chỉ CNTT",
+        vstepCertificate: "Chứng chỉ VSTEP"
+      },
+      form: {
+        trainingType: "Chọn loại đào tạo",
+        trainingTypeOptions: {
+          university: "Bằng tốt nghiệp Đại học",
+          college: "Bằng tốt nghiệp Cao đẳng",
+          master: "Bằng Thạc sĩ",
+          phd: "Bằng Tiến sĩ"
+        },
+        dateOfBirth: "Ngày sinh",
+        dateOfBirthPlaceholder: "dd/mm/yyyy",
+        entryNumber: "Số vào số",
+        fullName: "Họ tên",
+        templateNumber: "Số hiệu phôi",
+        confirmInfo: "Tôi xác nhận rằng tất cả thông tin trên là đúng sự thật",
+        search: "Tìm kiếm"
+      }
     },
 
     // Student page
@@ -242,7 +270,35 @@ export const translations = {
       search: "Search",
       searchPlaceholder: "Search...",
       english: "English",
-      vietnamese: "Tiếng Việt"
+      vietnamese: "Tiếng Việt",
+      lookup: "Lookup"
+    },
+
+    // Lookup page
+    lookup: {
+      title: "Lookup",
+      subtitle: "Lookup degree and certificate information",
+      tabs: {
+        degree: "Degree",
+        itCertificate: "IT Certificate",
+        vstepCertificate: "VSTEP Certificate"
+      },
+      form: {
+        trainingType: "Select training type",
+        trainingTypeOptions: {
+          university: "University Graduation Degree",
+          college: "College Graduation Degree",
+          master: "Master's Degree",
+          phd: "PhD Degree"
+        },
+        dateOfBirth: "Date of Birth",
+        dateOfBirthPlaceholder: "dd/mm/yyyy",
+        entryNumber: "Entry Number",
+        fullName: "Full Name",
+        templateNumber: "Template Number",
+        confirmInfo: "I confirm that all the above information is true",
+        search: "Search"
+      }
     },
 
     // Student page
