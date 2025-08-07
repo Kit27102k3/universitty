@@ -4,11 +4,13 @@ import { useState } from "react";
 import { Menu, X, Phone, Globe, HomeIcon, SearchIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 import LoginModal from "./LoginModal";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Header = () => {
+  const { language, setLanguage, t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [language, setLanguage] = useState("vi");
   const [loginOpen, setLoginOpen] = useState(false);
   const [loginRole, setLoginRole] = useState(""); // "student" hoặc "staff"
   const [searchOpen, setSearchOpen] = useState(false);
@@ -23,12 +25,12 @@ const Header = () => {
   };
 
   const navItems = [
-    { name: "Trang chủ", href: "#home" },
-    { name: "Giới thiệu", href: "#about" },
-    { name: "Đào tạo", href: "#programs" },
-    { name: "Nghiên cứu", href: "#research" },
-    { name: "Tin tức", href: "#news" },
-    { name: "Liên hệ", href: "#contact" },
+    { name: t('header.home'), href: "/" },
+    { name: t('header.about'), href: "/gioi-thieu" },
+    { name: t('header.education'), href: "/dao-tao" },
+    { name: t('header.research'), href: "/nghien-cuu" },
+    { name: t('header.news'), href: "/tin-tuc" },
+    { name: t('header.contact'), href: "/lien-he" },
   ];
 
   const aboutSubItems = [
@@ -61,15 +63,12 @@ const Header = () => {
               <button className="flex items-center gap-2 hover:text-yellow-400 transition-colors">
                 <HomeIcon className="w-4 h-4" />
               </button>
-              <button
+              <Link
+                href="/sinh-vien"
                 className="flex items-center gap-2 hover:text-yellow-400 transition-colors"
-                onClick={() => {
-                  setLoginRole("student");
-                  setLoginOpen(true);
-                }}
               >
-                <span>Sinh viên</span>
-              </button>
+                <span>{t('header.student')}</span>
+              </Link>
               <button
                 className="flex items-center gap-2 hover:text-yellow-400 transition-colors"
                 onClick={() => {
@@ -77,7 +76,7 @@ const Header = () => {
                   setLoginOpen(true);
                 }}
               >
-                <span>Cán bộ - Giảng viên</span>
+                <span>{t('header.staff')}</span>
               </button>
               <button className="flex items-center gap-2 hover:text-yellow-400 transition-colors" onClick={() => setSearchOpen(!searchOpen)}>
                 <SearchIcon className="w-4 h-4" />
@@ -87,7 +86,7 @@ const Header = () => {
                 className="flex items-center gap-2 hover:text-yellow-400 transition-colors"
               >
                 <Globe className="w-4 h-4" />
-                <span>{language === "vi" ? "English" : "Tiếng Việt"}</span>
+                <span>{language === "vi" ? t('header.english') : t('header.vietnamese')}</span>
               </button>
             </div>
           </div>
@@ -102,7 +101,7 @@ const Header = () => {
                 <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <input
                   type="text"
-                  placeholder="Tìm kiếm..."
+                  placeholder={t('header.searchPlaceholder')}
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   autoFocus
                 />
@@ -137,7 +136,7 @@ const Header = () => {
 
           <nav className="hidden lg:flex items-center gap-6">
             {navItems.map((item) =>
-              item.name === "Giới thiệu" ? (
+              item.name === t('header.about') ? (
                 <div key={item.name} className="relative group p-4">
                   <a
                     href={item.href}
@@ -150,19 +149,18 @@ const Header = () => {
                       <div className="w-1/3 relative flex flex-col justify-center items-start p-8 bg-gradient-to-tr from-blue-900/80 to-blue-700/80 text-white overflow-hidden min-h-[320px]">
                         <img
                           src="/about-bg.jpg"
-                          alt="Giới thiệu"
+                          alt={t('header.about')}
                           className="absolute inset-0 w-full h-full object-cover opacity-60 rounded-l-lg -z-10"
                         />
-                        <h3 className="text-3xl font-bold mb-2">Giới thiệu</h3>
+                        <h3 className="text-3xl font-bold mb-2">{t('header.about')}</h3>
                         <p className="mb-6 text-lg font-medium">
-                          Trường ĐH Nam Cần Thơ là tổ hợp đào tạo, nghiên cứu và
-                          hệ thống doanh nghiệp
+                          {t('home.hero.description')}
                         </p>
                         <a
                           href="#about"
                           className="border border-white px-6 py-2 rounded text-white font-semibold hover:bg-white hover:text-blue-900 transition-colors"
                         >
-                          Xem thêm
+                          {t('common.viewDetails')}
                         </a>
                       </div>
                       <div className="w-2/3 grid grid-cols-3 gap-6 p-8">
