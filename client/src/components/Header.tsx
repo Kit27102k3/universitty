@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import LoginModal from "./LoginModal";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useUser } from "@/contexts/UserContext";
 
 const Header = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -15,6 +16,7 @@ const Header = () => {
   const [loginRole, setLoginRole] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchClosing, setSearchClosing] = useState(false);
+  const { user } = useUser();
 
   const handleCloseSearch = () => {
     setSearchClosing(true);

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useUser } from "@/contexts/UserContext";
 
 function generateCaptcha(length = 5) {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -23,6 +24,7 @@ export default function LoginModal({ open, onOpenChange, role }: LoginModalProps
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
   const [captcha, setCaptcha] = useState(generateCaptcha());
   const [captchaError, setCaptchaError] = useState("");
+  const { setUser } = useUser();
 
   const refreshCaptcha = () => {
     const newCaptcha = generateCaptcha();
@@ -37,7 +39,16 @@ export default function LoginModal({ open, onOpenChange, role }: LoginModalProps
       return;
     }
     setCaptchaError("");
-    // Xử lý đăng nhập ở đây
+    // Chỉ cho phép role là 'student' hoặc 'staff'
+    if (role !== "student" && role !== "staff") {
+      setCaptchaError("Chỉ cho phép đăng nhập Sinh viên hoặc Cán bộ - Giảng viên");
+      return;
+    }
+    setUser({
+      id: data.id,
+      name: role === "staff" ? "Cán bộ" : "Sinh viên",
+      role,
+    });
     onOpenChange(false);
     reset();
     refreshCaptcha();
@@ -47,7 +58,7 @@ export default function LoginModal({ open, onOpenChange, role }: LoginModalProps
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Đăng nhập {role === "student" ? "Sinh viên" : "Cán bộ - Giáo viên"}</DialogTitle>
+          <DialogTitle>Đăng nhập {role === "student" ? "Sinh viên" : "Cán bộ - Giảng viên"}</DialogTitle>
           <DialogDescription>Vui lòng nhập đầy đủ thông tin để tiếp tục.</DialogDescription>
         </DialogHeader>
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
