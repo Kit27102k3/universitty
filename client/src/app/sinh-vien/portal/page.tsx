@@ -21,10 +21,13 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Footer from "@/components/Footer";
+import { useRouter } from "next/navigation";
 
 export default function StudentPortalPage() {
   const { t } = useLanguage();
   const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const [showNewsDropdown, setShowNewsDropdown] = useState(false);
+  const router = useRouter();
 
   // Fake student info
   const student = {
@@ -67,6 +70,43 @@ export default function StudentPortalPage() {
   const maxScore = Math.max(
     ...chartData.map((d) => Math.max(d.yourScore, d.avgScore))
   );
+
+  // Fake news data
+  const newsItems = [
+    {
+      id: 1,
+      title: "Thông báo lịch đăng ký học phần HK1",
+      time: "10 phút trước",
+      icon: FileText,
+      url: "/tin-tuc/dang-ky-hoc-phan-hk1"
+    },
+    {
+      id: 2,
+      title: "Sự kiện Hội thảo AI & Ứng dụng",
+      time: "1 giờ trước",
+      icon: Calendar,
+      url: "/tin-tuc/hoi-thao-ai-ung-dung"
+    },
+    {
+      id: 3,
+      title: "Học bổng khuyến học 2025",
+      time: "Hôm qua",
+      icon: BookOpen,
+      url: "/tin-tuc/hoc-bong-khuyen-hoc-2025"
+    },
+    {
+      id: 4,
+      title: "Thông báo nghỉ học do bảo trì điện",
+      time: "2 ngày trước",
+      icon: Bell,
+      url: "/tin-tuc/thong-bao-nghi-hoc-bao-tri-dien"
+    }
+  ];
+
+  const handleNewsClick = (url: string) => {
+    setShowNewsDropdown(false);
+    router.push(url);
+  };
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -114,15 +154,73 @@ export default function StudentPortalPage() {
                 <Home className="w-5 h-5" />
                 <span className="text-sm">Trang chủ</span>
               </button>
-              <button className="flex items-center gap-2 text-gray-600 hover:text-blue-600">
+              {/* Tin tức dropdown */}
+              <div className="relative">
+                <button
+                  className="flex items-center gap-2 text-gray-600 hover:text-blue-600"
+                  onClick={() => {
+                    setShowNewsDropdown((prev) => !prev);
+                    setShowUserDropdown(false);
+                  }}
+                >
                 <Bell className="w-5 h-5" />
                 <span className="text-sm">Tin tức</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${showNewsDropdown ? "rotate-180" : ""}`} />
+                </button>
+                {/* News Dropdown */}
+                <div
+                  className={`absolute left-1/2 -translate-x-1/2 mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50 transition-all duration-300 ease-in-out ${
+                    showNewsDropdown
+                      ? "opacity-100 transform translate-y-0 max-h-96"
+                      : "opacity-0 transform -translate-y-2 max-h-0 pointer-events-none"
+                  }`}
+                >
+                  <div className="px-4 py-3 border-b border-gray-100 bg-gray-50">
+                    <div className="font-medium text-gray-900 text-sm">Tin tức mới</div>
+                    <div className="text-xs text-gray-500">Cập nhật trong ngày</div>
+                  </div>
+                  <div
+                    className="py-1 pr-3 overflow-y-auto max-h-80"
+                    style={{
+                      transition: "max-height 0.3s",
+                      scrollbarWidth: "thin",
+                      scrollbarColor: "#d1d5db transparent",
+                      msOverflowStyle: "none",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.scrollbarColor = "#9ca3af transparent";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.scrollbarColor = "#d1d5db transparent";
+                    }}
+                  >
+                    <style jsx>{`
+                      div::-webkit-scrollbar { width: 6px; }
+                      div::-webkit-scrollbar-track { background: transparent; }
+                      div::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; transition: background 0.2s; }
+                      div::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+                    `}</style>
+                    {newsItems.map((news) => (
+                      <button
+                        key={news.id}
+                        onClick={() => handleNewsClick(news.url)}
+                        className="w-full flex items-start gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150 text-left"
+                      >
+                        <news.icon className="w-4 h-4 mt-0.5" />
+                        <div>
+                          <div className="font-medium">{news.title}</div>
+                          <div className="text-xs text-gray-500">{news.time}</div>
+                        </div>
               </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
 
               {/* User Profile */}
               <div className="relative">
                 <button
-                  onClick={() => setShowUserDropdown(!showUserDropdown)}
+                  onClick={() => { setShowUserDropdown(!showUserDropdown); setShowNewsDropdown(false); }}
                   className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-200"
                 >
                   <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
@@ -205,71 +303,71 @@ export default function StudentPortalPage() {
                       }
                     `}</style>
                     <a
-                      href="#"
+                      href="/sinh-vien/thong-tin"
                       className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150"
                     >
                       <UserIcon className="w-4 h-4" />
                       Thông tin sinh viên
                     </a>
                     <a
-                      href="#"
+                      href="/sinh-vien/lich-hoc"
                       className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150"
                     >
                       <Calendar className="w-4 h-4" />
                       Lịch học theo tuần
                     </a>
                     <a
-                      href="#"
+                      href="/sinh-vien/lich-thi"
                       className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150"
                     >
                       <FileText className="w-4 h-4" />
                       Lịch thi theo tuần
                     </a>
                     <a
-                      href="#"
+                      href="/sinh-vien/ket-qua-hoc-tap"
                       className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150"
                     >
                       <BookOpen className="w-4 h-4" />
                       Kết quả học tập
                     </a>
                     <a
-                      href="#"
+                      href="/sinh-vien/tien-do-hoc-tap"
                       className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150"
                     >
                       <BarChart2 className="w-4 h-4" />
                       Tiến độ học tập
                     </a>
                     <a
-                      href="#"
+                      href="/sinh-vien/tra-cuu-cong-no"
                       className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150"
                     >
                       <CreditCard className="w-4 h-4" />
                       Tra cứu công nợ
                     </a>
                     <a
-                      href="#"
+                      href="/sinh-vien/chuong-trinh-khung"
                       className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150"
                     >
                       <GraduationCap className="w-4 h-4" />
                       Chương trình khung
                     </a>
                     <div className="border-t border-gray-100 my-1"></div>
-                    <a
-                      href="#"
+                      <a
+                        href="#"
                       className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-150"
-                    >
+                      >
                       <Settings className="w-4 h-4" />
                       Cài đặt
-                    </a>
-                    <a
-                      href="#"
+                      </a>
+                      <a
+                        href="#"
                       className="flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors duration-150"
-                    >
+                      >
                       <LogOut className="w-4 h-4" />
-                      Đăng xuất
-                    </a>
+                        Đăng xuất
+                      </a>
+                    </div>
                   </div>
-                </div>
               </div>
             </div>
           </div>
@@ -282,75 +380,75 @@ export default function StudentPortalPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           {/* Cột trái: Thông tin sinh viên */}
           <div className="bg-white rounded-lg shadow p-6 h-full flex flex-col justify-between">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">
-              Thông tin sinh viên
-            </h2>
-            <div className="flex gap-6">
-              <div className="flex-shrink-0 flex flex-col items-center">
-                <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-blue-200 mb-2">
-                  <Image
-                    src={student.avatar}
-                    alt="avatar"
-                    width={96}
-                    height={96}
-                    className="object-cover w-full h-full"
-                  />
+              <h2 className="text-xl font-bold text-gray-800 mb-4">
+                Thông tin sinh viên
+              </h2>
+              <div className="flex gap-6">
+                <div className="flex-shrink-0 flex flex-col items-center">
+                  <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-blue-200 mb-2">
+                    <Image
+                      src={student.avatar}
+                      alt="avatar"
+                      width={96}
+                      height={96}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <a href="#" className="text-blue-600 text-sm hover:underline">
+                    Xem chi tiết
+                  </a>
                 </div>
-                <a href="#" className="text-blue-600 text-sm hover:underline">
-                  Xem chi tiết
-                </a>
-              </div>
-              <div className="flex-1 grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
-                <div>
-                  <span className="font-semibold">MSSV:</span>{" "}
-                  <span className="text-blue-700 font-semibold">
-                    {student.id}
-                  </span>
-                </div>
-                <div>
-                  <span className="font-semibold">Lớp học:</span>{" "}
-                  {student.class}
-                </div>
-                <div>
+                <div className="flex-1 grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
+                  <div>
+                    <span className="font-semibold">MSSV:</span>{" "}
+                    <span className="text-blue-700 font-semibold">
+                      {student.id}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="font-semibold">Lớp học:</span>{" "}
+                    {student.class}
+                  </div>
+                  <div>
                   <span className="font-semibold">Họ tên:</span> {student.name}
-                </div>
-                <div>
-                  <span className="font-semibold">Khóa học:</span>{" "}
-                  {student.course}
-                </div>
-                <div>
-                  <span className="font-semibold">Giới tính:</span>{" "}
-                  {student.gender}
-                </div>
-                <div>
-                  <span className="font-semibold">Bậc đào tạo:</span>{" "}
-                  {student.level}
-                </div>
-                <div>
-                  <span className="font-semibold">Ngày sinh:</span>{" "}
-                  <span className="font-semibold text-blue-700">
-                    {student.dob}
-                  </span>
-                </div>
-                <div>
-                  <span className="font-semibold">Loại hình đào tạo:</span>{" "}
-                  {student.type}
-                </div>
-                <div>
-                  <span className="font-semibold">Nơi sinh:</span>{" "}
-                  <span className="font-semibold text-blue-700">
-                    {student.pob}
-                  </span>
-                </div>
-                <div>
-                  <span className="font-semibold">Ngành:</span>{" "}
-                  <span className="font-semibold text-blue-700">
-                    {student.major}
-                  </span>
+                  </div>
+                  <div>
+                    <span className="font-semibold">Khóa học:</span>{" "}
+                    {student.course}
+                  </div>
+                  <div>
+                    <span className="font-semibold">Giới tính:</span>{" "}
+                    {student.gender}
+                  </div>
+                  <div>
+                    <span className="font-semibold">Bậc đào tạo:</span>{" "}
+                    {student.level}
+                  </div>
+                  <div>
+                    <span className="font-semibold">Ngày sinh:</span>{" "}
+                    <span className="font-semibold text-blue-700">
+                      {student.dob}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="font-semibold">Loại hình đào tạo:</span>{" "}
+                    {student.type}
+                  </div>
+                  <div>
+                    <span className="font-semibold">Nơi sinh:</span>{" "}
+                    <span className="font-semibold text-blue-700">
+                      {student.pob}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="font-semibold">Ngành:</span>{" "}
+                    <span className="font-semibold text-blue-700">
+                      {student.major}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
           {/* Cột phải: Nhắc nhở và lịch */}
           <div className="flex flex-col gap-6 h-full">
             {/* Dòng trên: Nhắc nhở mới, chưa xem */}
@@ -398,106 +496,106 @@ export default function StudentPortalPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Cột 1: Kết quả học tập */}
           <section className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold text-gray-800">
-                Kết quả học tập
-              </h2>
-              <div className="relative">
-                <select className="appearance-none border border-gray-300 rounded px-3 py-1 text-sm focus:outline-none">
-                  <option>HK1(2021-2022)</option>
-                </select>
-                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-bold text-gray-800">
+                  Kết quả học tập
+                </h2>
+                <div className="relative">
+                  <select className="appearance-none border border-gray-300 rounded px-3 py-1 text-sm focus:outline-none">
+                    <option>HK1(2021-2022)</option>
+                  </select>
+                  <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                </div>
               </div>
-            </div>
-            {/* Chart */}
-            <div className="h-64 flex items-end justify-between gap-2">
-              {chartData.map((data, index) => (
+              {/* Chart */}
+              <div className="h-64 flex items-end justify-between gap-2">
+                {chartData.map((data, index) => (
                 <div key={index} className="flex-1 flex flex-col items-center">
-                  <div className="relative w-full h-40 flex items-end">
-                    {/* Your Score Bar */}
-                    <div
-                      className="w-full bg-orange-500 rounded-t"
-                      style={{
-                        height: `${(data.yourScore / maxScore) * 100}%`,
-                      }}
-                    ></div>
-                    {/* Average Score Line */}
-                    <div
-                      className="absolute w-full border-t-2 border-yellow-400"
+                    <div className="relative w-full h-40 flex items-end">
+                      {/* Your Score Bar */}
+                      <div
+                        className="w-full bg-orange-500 rounded-t"
+                        style={{
+                          height: `${(data.yourScore / maxScore) * 100}%`,
+                        }}
+                      ></div>
+                      {/* Average Score Line */}
+                      <div
+                        className="absolute w-full border-t-2 border-yellow-400"
                       style={{ bottom: `${(data.avgScore / maxScore) * 100}%` }}
-                    >
-                      <div className="w-3 h-3 bg-yellow-400 rounded-full -mt-1.5 mx-auto"></div>
+                      >
+                        <div className="w-3 h-3 bg-yellow-400 rounded-full -mt-1.5 mx-auto"></div>
+                      </div>
+                    </div>
+                    <div className="text-xs text-gray-600 mt-2">
+                      {data.period}
                     </div>
                   </div>
-                  <div className="text-xs text-gray-600 mt-2">
-                    {data.period}
-                  </div>
+                ))}
+              </div>
+              {/* Legend */}
+              <div className="flex justify-center gap-6 mt-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-orange-500 rounded"></div>
+                  <span className="text-sm">Điểm của bạn</span>
                 </div>
-              ))}
-            </div>
-            {/* Legend */}
-            <div className="flex justify-center gap-6 mt-4">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-orange-500 rounded"></div>
-                <span className="text-sm">Điểm của bạn</span>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-yellow-400 rounded"></div>
+                  <span className="text-sm">Điểm TB lớp học phần</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-yellow-400 rounded"></div>
-                <span className="text-sm">Điểm TB lớp học phần</span>
-              </div>
-            </div>
           </section>
           {/* Cột 2: Tiến độ học tập */}
           <section className="bg-white rounded-lg shadow p-6 flex flex-col items-center">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">
-              Tiến độ học tập
-            </h3>
-            <div className="relative flex items-center justify-center">
-              <svg width="120" height="120" viewBox="0 0 120 120">
-                <circle cx="60" cy="60" r="50" fill="#e5e7eb" />
-                <circle
-                  cx="60"
-                  cy="60"
-                  r="50"
-                  fill="none"
-                  stroke="#22c55e"
-                  strokeWidth="16"
-                  strokeDasharray="314"
-                  strokeDashoffset="0"
-                />
-                <circle cx="60" cy="60" r="40" fill="#fff" />
-              </svg>
-              <div className="absolute text-lg font-bold text-green-600">
-                161/161
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                Tiến độ học tập
+              </h3>
+              <div className="relative flex items-center justify-center">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="50" fill="#e5e7eb" />
+                  <circle
+                    cx="60"
+                    cy="60"
+                    r="50"
+                    fill="none"
+                    stroke="#22c55e"
+                    strokeWidth="16"
+                    strokeDasharray="314"
+                    strokeDashoffset="0"
+                  />
+                  <circle cx="60" cy="60" r="40" fill="#fff" />
+                </svg>
+                <div className="absolute text-lg font-bold text-green-600">
+                  161/161
+                </div>
               </div>
-            </div>
           </section>
           {/* Cột 3: Lớp học phần */}
           <section className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-800">
-                Lớp học phần
-              </h3>
-              <div className="relative">
-                <select className="appearance-none border border-gray-300 rounded px-3 py-1 text-sm focus:outline-none">
-                  <option>HK1(2021-2022)</option>
-                </select>
-                <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-              </div>
-            </div>
-            <div className="space-y-3">
-              {courses.map((course, index) => (
-                <div key={index} className="border-b border-gray-100 pb-2">
-                  <div className="text-blue-600 text-sm font-medium">
-                    {course.code}
-                  </div>
-                  <div className="text-gray-800 text-sm">{course.name}</div>
-                  <div className="text-gray-600 text-xs">
-                    {course.credits} tín chỉ
-                  </div>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold text-gray-800">
+                  Lớp học phần
+                </h3>
+                <div className="relative">
+                  <select className="appearance-none border border-gray-300 rounded px-3 py-1 text-sm focus:outline-none">
+                    <option>HK1(2021-2022)</option>
+                  </select>
+                  <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
                 </div>
-              ))}
-            </div>
+              </div>
+              <div className="space-y-3">
+                {courses.map((course, index) => (
+                  <div key={index} className="border-b border-gray-100 pb-2">
+                    <div className="text-blue-600 text-sm font-medium">
+                      {course.code}
+                    </div>
+                    <div className="text-gray-800 text-sm">{course.name}</div>
+                    <div className="text-gray-600 text-xs">
+                      {course.credits} tín chỉ
+                    </div>
+                  </div>
+                ))}
+              </div>
           </section>
         </div>
       </div>
