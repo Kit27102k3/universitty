@@ -14,10 +14,27 @@ import {
   CheckCircle,
 } from "lucide-react";
 import Footer from "@/components/Footer";
+import StudentHeader from "../components/StudentHeader";
+import BackToTop from "@/components/BackToTop";
 
 export default function SchedulePage() {
   const { t } = useLanguage();
   const [currentWeek, setCurrentWeek] = useState(new Date());
+
+  // Fake student info for header
+  const student = {
+    avatar: "/me.jpg",
+    id: "2110339",
+    name: "Nguyễn Trọng Khiêm",
+    gender: "Nam",
+    dob: "27/10/2003",
+    pob: "Sóc Trăng",
+    class: "DH21TIN06",
+    course: "2021",
+    level: "Đại học",
+    type: "Chính quy 4",
+    major: "Công nghệ thông tin",
+  };
 
   // Fake schedule data
   const scheduleData = [
@@ -171,23 +188,8 @@ export default function SchedulePage() {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-4">
-              <button onClick={() => window.history.back()} className="text-gray-600 hover:text-gray-800">
-                ← Quay lại
-              </button>
-              <h1 className="text-xl font-bold text-gray-800">Lịch học theo tuần</h1>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
+      <StudentHeader student={student} />
       <div className="container mx-auto px-4 py-6">
-        {/* Week Navigation */}
         <div className="bg-white rounded-lg shadow p-6 mb-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -219,17 +221,14 @@ export default function SchedulePage() {
           </div>
         </div>
 
-        {/* Schedule Grid */}
         <div className="overflow-x-auto">
           <div className="grid grid-cols-7 min-w-[900px] gap-4">
             {scheduleData.map((day, dayIndex) => (
               <div key={dayIndex} className="bg-white rounded-lg shadow min-h-[220px] flex flex-col">
-                {/* Day Header */}
                 <div className="p-4 border-b border-gray-200">
                   <h3 className="font-semibold text-gray-800">{day.day}</h3>
                   <p className="text-sm text-gray-500">{day.date}</p>
                 </div>
-                {/* Classes */}
                 <div className="p-4 flex-1">
                   {day.classes.length === 0 ? (
                     <div className="text-center py-8 flex flex-col items-center justify-center h-full">
@@ -273,7 +272,6 @@ export default function SchedulePage() {
           </div>
         </div>
 
-        {/* Summary */}
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-white rounded-lg shadow p-4">
             <div className="flex items-center gap-3">
@@ -313,6 +311,7 @@ export default function SchedulePage() {
         </div>
       </div>
 
+      <BackToTop />
       <Footer />
     </main>
   );

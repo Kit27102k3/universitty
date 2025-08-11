@@ -1,6 +1,5 @@
 export const translations = {
   vi: {
-    // Header
     header: {
       home: "Trang chủ",
       about: "Giới thiệu",
@@ -14,17 +13,16 @@ export const translations = {
       searchPlaceholder: "Tìm kiếm...",
       english: "English",
       vietnamese: "Tiếng Việt",
-      lookup: "Tra cứu"
+      lookup: "Tra cứu",
     },
 
-    // Lookup page
     lookup: {
       title: "Tra cứu",
       subtitle: "Tra cứu thông tin văn bằng, chứng chỉ",
       tabs: {
         degree: "Văn bằng",
         itCertificate: "Chứng chỉ CNTT",
-        vstepCertificate: "Chứng chỉ VSTEP"
+        vstepCertificate: "Chứng chỉ VSTEP",
       },
       form: {
         trainingType: "Chọn loại đào tạo",
@@ -32,7 +30,7 @@ export const translations = {
           university: "Bằng tốt nghiệp Đại học",
           college: "Bằng tốt nghiệp Cao đẳng",
           master: "Bằng Thạc sĩ",
-          phd: "Bằng Tiến sĩ"
+          phd: "Bằng Tiến sĩ",
         },
         dateOfBirth: "Ngày sinh",
         dateOfBirthPlaceholder: "dd/mm/yyyy",
@@ -40,11 +38,10 @@ export const translations = {
         fullName: "Họ tên",
         templateNumber: "Số hiệu phôi",
         confirmInfo: "Tôi xác nhận rằng tất cả thông tin trên là đúng sự thật",
-        search: "Tìm kiếm"
-      }
+        search: "Tìm kiếm",
+      },
     },
 
-    // Student page
     student: {
       title: "Công cụ",
       login: "Đăng nhập",
@@ -78,121 +75,137 @@ export const translations = {
         teachingEvaluation: "Đánh giá giảng dạy",
         teachingEvaluationDesc: "Đánh giá chất lượng giảng dạy",
         itSupport: "IT Hỗ trợ",
-        itSupportDesc: "Hỗ trợ công nghệ thông tin"
-      }
+        itSupportDesc: "Hỗ trợ công nghệ thông tin",
+      },
     },
 
-    // Home page
     home: {
       hero: {
         title: "Trường Đại Học Nam Cần Thơ",
         subtitle: "Nơi ươm mầm tài năng, kiến tạo tương lai",
-        description: "Đào tạo nguồn nhân lực chất lượng cao, nghiên cứu khoa học và phục vụ cộng đồng"
+        description:
+          "Đào tạo nguồn nhân lực chất lượng cao, nghiên cứu khoa học và phục vụ cộng đồng",
       },
       stats: {
         students: "Sinh viên",
         programs: "Chương trình",
         teachers: "Giảng viên",
-        employment: "Tỷ lệ việc làm"
-      }
+        employment: "Tỷ lệ việc làm",
+      },
     },
 
-    // About page
     about: {
       title: "Giới Thiệu",
-      subtitle: "Trường Đại học Nam Cần Thơ - Nơi ươm mầm tài năng, kiến tạo tương lai",
+      subtitle:
+        "Trường Đại học Nam Cần Thơ - Nơi ươm mầm tài năng, kiến tạo tương lai",
       aboutTitle: "Về Trường Đại Học Nam Cần Thơ",
-      aboutDescription1: "Trường Đại học Nam Cần Thơ (NCTU) được thành lập năm 2010, là một trong những trường đại học tư thục hàng đầu tại khu vực Đồng bằng sông Cửu Long. Với sứ mệnh đào tạo nguồn nhân lực chất lượng cao, nghiên cứu khoa học và phục vụ cộng đồng, trường đã và đang đóng góp tích cực vào sự phát triển kinh tế - xã hội của khu vực.",
-      aboutDescription2: "Trường có đội ngũ giảng viên giàu kinh nghiệm, cơ sở vật chất hiện đại và chương trình đào tạo đa dạng, đáp ứng nhu cầu học tập và phát triển nghề nghiệp của sinh viên trong thời đại công nghệ số.",
+      aboutDescription1:
+        "Trường Đại học Nam Cần Thơ (NCTU) được thành lập năm 2010, là một trong những trường đại học tư thục hàng đầu tại khu vực Đồng bằng sông Cửu Long. Với sứ mệnh đào tạo nguồn nhân lực chất lượng cao, nghiên cứu khoa học và phục vụ cộng đồng, trường đã và đang đóng góp tích cực vào sự phát triển kinh tế - xã hội của khu vực.",
+      aboutDescription2:
+        "Trường có đội ngũ giảng viên giàu kinh nghiệm, cơ sở vật chất hiện đại và chương trình đào tạo đa dạng, đáp ứng nhu cầu học tập và phát triển nghề nghiệp của sinh viên trong thời đại công nghệ số.",
       mission: "Sứ Mệnh",
-      missionText: "Đào tạo nguồn nhân lực chất lượng cao, nghiên cứu khoa học và phục vụ cộng đồng.",
+      missionText:
+        "Đào tạo nguồn nhân lực chất lượng cao, nghiên cứu khoa học và phục vụ cộng đồng.",
       vision: "Tầm Nhìn",
-      visionText: "Trở thành trường đại học hàng đầu khu vực ĐBSCL, đạt chuẩn quốc tế.",
+      visionText:
+        "Trở thành trường đại học hàng đầu khu vực ĐBSCL, đạt chuẩn quốc tế.",
       values: {
         title: "Giá Trị Cốt Lõi",
         subtitle: "Những giá trị định hướng cho mọi hoạt động của trường",
         quality: {
           title: "Chất lượng",
-          description: "Cam kết chất lượng đào tạo cao nhất, đáp ứng chuẩn quốc tế"
+          description:
+            "Cam kết chất lượng đào tạo cao nhất, đáp ứng chuẩn quốc tế",
         },
         humanistic: {
           title: "Nhân văn",
-          description: "Lấy người học làm trung tâm, phát triển toàn diện con người"
+          description:
+            "Lấy người học làm trung tâm, phát triển toàn diện con người",
         },
         integration: {
           title: "Hội nhập",
-          description: "Hội nhập quốc tế, tiếp cận công nghệ và phương pháp tiên tiến"
+          description:
+            "Hội nhập quốc tế, tiếp cận công nghệ và phương pháp tiên tiến",
         },
         innovation: {
           title: "Sáng tạo",
-          description: "Khuyến khích đổi mới sáng tạo trong học tập và nghiên cứu"
-        }
+          description:
+            "Khuyến khích đổi mới sáng tạo trong học tập và nghiên cứu",
+        },
       },
       history: {
         title: "Lịch Sử Phát Triển",
-        subtitle: "Hành trình xây dựng và phát triển của trường qua các năm"
+        subtitle: "Hành trình xây dựng và phát triển của trường qua các năm",
       },
       leadership: {
         title: "Ban Lãnh Đạo",
-        subtitle: "Đội ngũ lãnh đạo giàu kinh nghiệm và tâm huyết với sự nghiệp giáo dục"
+        subtitle:
+          "Đội ngũ lãnh đạo giàu kinh nghiệm và tâm huyết với sự nghiệp giáo dục",
       },
       campus: {
         title: "Khuôn Viên Trường",
-        subtitle: "Cơ sở vật chất hiện đại, môi trường học tập lý tưởng"
-      }
+        subtitle: "Cơ sở vật chất hiện đại, môi trường học tập lý tưởng",
+      },
     },
 
-    // Education page
     education: {
       title: "Đào Tạo",
-      subtitle: "Đào tạo nguồn nhân lực chất lượng cao, đáp ứng nhu cầu phát triển của xã hội",
+      subtitle:
+        "Đào tạo nguồn nhân lực chất lượng cao, đáp ứng nhu cầu phát triển của xã hội",
       programs: {
         title: "Chương Trình Đào Tạo",
-        subtitle: "Đa dạng các chương trình đào tạo từ bậc đại học đến sau đại học, đáp ứng mọi nhu cầu học tập và phát triển nghề nghiệp"
+        subtitle:
+          "Đa dạng các chương trình đào tạo từ bậc đại học đến sau đại học, đáp ứng mọi nhu cầu học tập và phát triển nghề nghiệp",
       },
       features: {
         title: "Điểm Mạnh Của Chúng Tôi",
         modernPrograms: {
           title: "Chương trình hiện đại",
-          description: "Cập nhật liên tục theo xu hướng thị trường và công nghệ mới nhất"
+          description:
+            "Cập nhật liên tục theo xu hướng thị trường và công nghệ mới nhất",
         },
         qualityTeachers: {
           title: "Giảng viên chất lượng",
-          description: "Đội ngũ giảng viên giàu kinh nghiệm, có trình độ cao và tâm huyết"
+          description:
+            "Đội ngũ giảng viên giàu kinh nghiệm, có trình độ cao và tâm huyết",
         },
         recognizedDegree: {
           title: "Bằng cấp được công nhận",
-          description: "Bằng cấp được Bộ GD&ĐT công nhận và có giá trị quốc tế"
-        }
-      }
+          description: "Bằng cấp được Bộ GD&ĐT công nhận và có giá trị quốc tế",
+        },
+      },
     },
 
-    // Research page
     research: {
       title: "Nghiên Cứu",
-      subtitle: "Đổi mới sáng tạo, nghiên cứu ứng dụng và đóng góp cho sự phát triển của xã hội",
+      subtitle:
+        "Đổi mới sáng tạo, nghiên cứu ứng dụng và đóng góp cho sự phát triển của xã hội",
       areas: {
         title: "Lĩnh Vực Nghiên Cứu",
-        subtitle: "Tập trung vào các lĩnh vực nghiên cứu chiến lược, đáp ứng nhu cầu phát triển của khu vực và quốc gia"
+        subtitle:
+          "Tập trung vào các lĩnh vực nghiên cứu chiến lược, đáp ứng nhu cầu phát triển của khu vực và quốc gia",
       },
       projects: {
         title: "Dự Án Nghiên Cứu Gần Đây",
-        subtitle: "Các dự án nghiên cứu đang thực hiện và đã hoàn thành với những đóng góp thiết thực cho cộng đồng"
+        subtitle:
+          "Các dự án nghiên cứu đang thực hiện và đã hoàn thành với những đóng góp thiết thực cho cộng đồng",
       },
       publications: {
         title: "Công Bố Khoa Học",
-        subtitle: "Những công trình nghiên cứu được công bố trên các tạp chí uy tín trong nước và quốc tế"
+        subtitle:
+          "Những công trình nghiên cứu được công bố trên các tạp chí uy tín trong nước và quốc tế",
       },
       facilities: {
         title: "Cơ Sở Nghiên Cứu",
-        subtitle: "Hệ thống phòng thí nghiệm và trang thiết bị hiện đại phục vụ nghiên cứu"
-      }
+        subtitle:
+          "Hệ thống phòng thí nghiệm và trang thiết bị hiện đại phục vụ nghiên cứu",
+      },
     },
 
-    // News page
     news: {
       title: "Tin Tức & Sự Kiện",
-      subtitle: "Cập nhật những tin tức mới nhất về hoạt động, thành tích và sự kiện của trường",
+      subtitle:
+        "Cập nhật những tin tức mới nhất về hoạt động, thành tích và sự kiện của trường",
       latestNews: "Tin Tức Mới Nhất",
       searchPlaceholder: "Tìm kiếm tin tức...",
       categories: {
@@ -203,20 +216,20 @@ export const translations = {
         cooperation: "Hợp tác",
         conferences: "Hội thảo",
         admission: "Tuyển sinh",
-        facilities: "Cơ sở vật chất"
+        facilities: "Cơ sở vật chất",
       },
       popularNews: "Tin Nổi Bật",
       tags: "Thẻ",
       readMore: "Đọc thêm",
       views: "lượt xem",
       author: "Tác giả",
-      date: "Ngày"
+      date: "Ngày",
     },
 
-    // Contact page
     contact: {
       title: "Liên Hệ",
-      subtitle: "Chúng tôi luôn sẵn sàng hỗ trợ và giải đáp mọi thắc mắc của bạn",
+      subtitle:
+        "Chúng tôi luôn sẵn sàng hỗ trợ và giải đáp mọi thắc mắc của bạn",
       address: "Địa chỉ",
       phone: "Điện thoại",
       email: "Email",
@@ -237,27 +250,27 @@ export const translations = {
       messagePlaceholder: "Nhập nội dung tin nhắn...",
       send: "Gửi tin nhắn",
       location: "Vị trí trường",
-      locationDescription: "Trường ĐH Nam Cần Thơ tọa lạc tại trung tâm TP. Cần Thơ, thuận tiện cho việc di chuyển và học tập.",
+      locationDescription:
+        "Trường ĐH Nam Cần Thơ tọa lạc tại trung tâm TP. Cần Thơ, thuận tiện cho việc di chuyển và học tập.",
       departments: "Các Phòng Ban",
       faq: {
         title: "Câu Hỏi Thường Gặp",
-        subtitle: "Những câu hỏi thường gặp nhất về trường và quy trình tuyển sinh"
-      }
+        subtitle:
+          "Những câu hỏi thường gặp nhất về trường và quy trình tuyển sinh",
+      },
     },
 
-    // Common
     common: {
       viewDetails: "Xem chi tiết",
       before: "Trước",
       after: "Sau",
       loading: "Đang tải...",
       error: "Có lỗi xảy ra",
-      success: "Thành công"
-    }
+      success: "Thành công",
+    },
   },
 
   en: {
-    // Header
     header: {
       home: "Home",
       about: "About",
@@ -271,17 +284,16 @@ export const translations = {
       searchPlaceholder: "Search...",
       english: "English",
       vietnamese: "Tiếng Việt",
-      lookup: "Lookup"
+      lookup: "Lookup",
     },
 
-    // Lookup page
     lookup: {
       title: "Lookup",
       subtitle: "Lookup degree and certificate information",
       tabs: {
         degree: "Degree",
         itCertificate: "IT Certificate",
-        vstepCertificate: "VSTEP Certificate"
+        vstepCertificate: "VSTEP Certificate",
       },
       form: {
         trainingType: "Select training type",
@@ -289,7 +301,7 @@ export const translations = {
           university: "University Graduation Degree",
           college: "College Graduation Degree",
           master: "Master's Degree",
-          phd: "PhD Degree"
+          phd: "PhD Degree",
         },
         dateOfBirth: "Date of Birth",
         dateOfBirthPlaceholder: "dd/mm/yyyy",
@@ -297,11 +309,10 @@ export const translations = {
         fullName: "Full Name",
         templateNumber: "Template Number",
         confirmInfo: "I confirm that all the above information is true",
-        search: "Search"
-      }
+        search: "Search",
+      },
     },
 
-    // Student page
     student: {
       title: "Tools",
       login: "Login",
@@ -335,121 +346,137 @@ export const translations = {
         teachingEvaluation: "Teaching Evaluation",
         teachingEvaluationDesc: "Evaluate teaching quality",
         itSupport: "IT Support",
-        itSupportDesc: "Information technology support"
-      }
+        itSupportDesc: "Information technology support",
+      },
     },
 
-    // Home page
     home: {
       hero: {
         title: "Nam Can Tho University",
         subtitle: "Where talents are nurtured, futures are created",
-        description: "Training high-quality human resources, conducting scientific research and serving the community"
+        description:
+          "Training high-quality human resources, conducting scientific research and serving the community",
       },
       stats: {
         students: "Students",
         programs: "Programs",
         teachers: "Teachers",
-        employment: "Employment Rate"
-      }
+        employment: "Employment Rate",
+      },
     },
 
-    // About page
     about: {
       title: "About",
-      subtitle: "Nam Can Tho University - Where talents are nurtured, futures are created",
+      subtitle:
+        "Nam Can Tho University - Where talents are nurtured, futures are created",
       aboutTitle: "About Nam Can Tho University",
-      aboutDescription1: "Nam Can Tho University (NCTU) was established in 2010, is one of the leading private universities in the Mekong Delta region. With the mission of training high-quality human resources, conducting scientific research and serving the community, the university has been and is actively contributing to the socio-economic development of the region.",
-      aboutDescription2: "The university has an experienced faculty, modern facilities and diverse training programs, meeting the learning and career development needs of students in the digital age.",
+      aboutDescription1:
+        "Nam Can Tho University (NCTU) was established in 2010, is one of the leading private universities in the Mekong Delta region. With the mission of training high-quality human resources, conducting scientific research and serving the community, the university has been and is actively contributing to the socio-economic development of the region.",
+      aboutDescription2:
+        "The university has an experienced faculty, modern facilities and diverse training programs, meeting the learning and career development needs of students in the digital age.",
       mission: "Mission",
-      missionText: "Training high-quality human resources, conducting scientific research and serving the community.",
+      missionText:
+        "Training high-quality human resources, conducting scientific research and serving the community.",
       vision: "Vision",
-      visionText: "To become a leading university in the Mekong Delta region, meeting international standards.",
+      visionText:
+        "To become a leading university in the Mekong Delta region, meeting international standards.",
       values: {
         title: "Core Values",
         subtitle: "Values that guide all activities of the university",
         quality: {
           title: "Quality",
-          description: "Commitment to the highest training quality, meeting international standards"
+          description:
+            "Commitment to the highest training quality, meeting international standards",
         },
         humanistic: {
           title: "Humanistic",
-          description: "Learner-centered, comprehensive human development"
+          description: "Learner-centered, comprehensive human development",
         },
         integration: {
           title: "Integration",
-          description: "International integration, access to advanced technology and methods"
+          description:
+            "International integration, access to advanced technology and methods",
         },
         innovation: {
           title: "Innovation",
-          description: "Encouraging innovation and creativity in learning and research"
-        }
+          description:
+            "Encouraging innovation and creativity in learning and research",
+        },
       },
       history: {
         title: "Development History",
-        subtitle: "The journey of building and developing the university over the years"
+        subtitle:
+          "The journey of building and developing the university over the years",
       },
       leadership: {
         title: "Leadership",
-        subtitle: "Experienced and dedicated leadership team to the education cause"
+        subtitle:
+          "Experienced and dedicated leadership team to the education cause",
       },
       campus: {
         title: "Campus",
-        subtitle: "Modern facilities, ideal learning environment"
-      }
+        subtitle: "Modern facilities, ideal learning environment",
+      },
     },
 
-    // Education page
     education: {
       title: "Education",
-      subtitle: "Training high-quality human resources, meeting the development needs of society",
+      subtitle:
+        "Training high-quality human resources, meeting the development needs of society",
       programs: {
         title: "Training Programs",
-        subtitle: "Diverse training programs from undergraduate to postgraduate levels, meeting all learning and career development needs"
+        subtitle:
+          "Diverse training programs from undergraduate to postgraduate levels, meeting all learning and career development needs",
       },
       features: {
         title: "Our Strengths",
         modernPrograms: {
           title: "Modern Programs",
-          description: "Continuously updated according to market trends and latest technology"
+          description:
+            "Continuously updated according to market trends and latest technology",
         },
         qualityTeachers: {
           title: "Quality Teachers",
-          description: "Experienced faculty with high qualifications and dedication"
+          description:
+            "Experienced faculty with high qualifications and dedication",
         },
         recognizedDegree: {
           title: "Recognized Degrees",
-          description: "Degrees recognized by the Ministry of Education and Training and have international value"
-        }
-      }
+          description:
+            "Degrees recognized by the Ministry of Education and Training and have international value",
+        },
+      },
     },
 
-    // Research page
     research: {
       title: "Research",
-      subtitle: "Innovation, applied research and contribution to social development",
+      subtitle:
+        "Innovation, applied research and contribution to social development",
       areas: {
         title: "Research Areas",
-        subtitle: "Focus on strategic research areas, meeting the development needs of the region and country"
+        subtitle:
+          "Focus on strategic research areas, meeting the development needs of the region and country",
       },
       projects: {
         title: "Recent Research Projects",
-        subtitle: "Ongoing and completed research projects with practical contributions to the community"
+        subtitle:
+          "Ongoing and completed research projects with practical contributions to the community",
       },
       publications: {
         title: "Scientific Publications",
-        subtitle: "Research works published in prestigious domestic and international journals"
+        subtitle:
+          "Research works published in prestigious domestic and international journals",
       },
       facilities: {
         title: "Research Facilities",
-        subtitle: "Modern laboratory system and equipment serving research"
-      }
+        subtitle: "Modern laboratory system and equipment serving research",
+      },
     },
 
-    // News page
     news: {
       title: "News & Events",
-      subtitle: "Latest updates on university activities, achievements and events",
+      subtitle:
+        "Latest updates on university activities, achievements and events",
       latestNews: "Latest News",
       searchPlaceholder: "Search news...",
       categories: {
@@ -460,17 +487,16 @@ export const translations = {
         cooperation: "Cooperation",
         conferences: "Conferences",
         admission: "Admission",
-        facilities: "Facilities"
+        facilities: "Facilities",
       },
       popularNews: "Popular News",
       tags: "Tags",
       readMore: "Read More",
       views: "views",
       author: "Author",
-      date: "Date"
+      date: "Date",
     },
 
-    // Contact page
     contact: {
       title: "Contact",
       subtitle: "We are always ready to support and answer all your questions",
@@ -494,25 +520,26 @@ export const translations = {
       messagePlaceholder: "Enter your message...",
       send: "Send Message",
       location: "University Location",
-      locationDescription: "Nam Can Tho University is located in the center of Can Tho City, convenient for travel and study.",
+      locationDescription:
+        "Nam Can Tho University is located in the center of Can Tho City, convenient for travel and study.",
       departments: "Departments",
       faq: {
         title: "Frequently Asked Questions",
-        subtitle: "Most common questions about the university and admission process"
-      }
+        subtitle:
+          "Most common questions about the university and admission process",
+      },
     },
 
-    // Common
     common: {
       viewDetails: "View Details",
       before: "Previous",
       after: "Next",
       loading: "Loading...",
       error: "An error occurred",
-      success: "Success"
-    }
-  }
+      success: "Success",
+    },
+  },
 };
 
-export type Language = 'vi' | 'en';
-export type TranslationKey = keyof typeof translations.vi; 
+export type Language = "vi" | "en";
+export type TranslationKey = keyof typeof translations.vi;

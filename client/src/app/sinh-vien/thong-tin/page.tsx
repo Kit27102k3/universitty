@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Footer from "@/components/Footer";
-
+import StudentHeader from "@/app/sinh-vien/components/StudentHeader";
 export default function StudentInfoPage() {
   const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState("personal");
@@ -438,19 +438,7 @@ export default function StudentInfoPage() {
   return (
     <main className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-4">
-              <button onClick={() => window.history.back()} className="text-gray-600 hover:text-gray-800">
-                ← Quay lại
-              </button>
-              <h1 className="text-xl font-bold text-gray-800">Thông tin sinh viên</h1>
-            </div>
-          </div>
-        </div>
-      </header>
-
+      <StudentHeader student={student} />
       {/* Main Content */}
       <div className="container mx-auto px-4 py-6">
         {/* Tabs */}

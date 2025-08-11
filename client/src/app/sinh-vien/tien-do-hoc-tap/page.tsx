@@ -15,10 +15,27 @@ import {
   FileText,
 } from "lucide-react";
 import Footer from "@/components/Footer";
+import StudentHeader from "../components/StudentHeader";
+import BackToTop from "@/components/BackToTop";
 
 export default function AcademicProgressPage() {
   const { t } = useLanguage();
   const [selectedYear, setSelectedYear] = useState("all");
+
+  // Fake student info for header
+  const student = {
+    avatar: "/me.jpg",
+    id: "2110339",
+    name: "Nguyễn Trọng Khiêm",
+    gender: "Nam",
+    dob: "27/10/2003",
+    pob: "Sóc Trăng",
+    class: "DH21TIN06",
+    course: "2021",
+    level: "Đại học",
+    type: "Chính quy 4",
+    major: "Công nghệ thông tin",
+  };
 
   // Fake progress data
   const progressData = {
@@ -201,19 +218,8 @@ export default function AcademicProgressPage() {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-4">
-              <button onClick={() => window.history.back()} className="text-gray-600 hover:text-gray-800">
-                ← Quay lại
-              </button>
-              <h1 className="text-xl font-bold text-gray-800">Tiến độ học tập</h1>
-            </div>
-          </div>
-        </div>
-      </header>
+      {/* Student Header */}
+      <StudentHeader student={student} />
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-6">
@@ -482,6 +488,7 @@ export default function AcademicProgressPage() {
         </div>
       </div>
 
+      <BackToTop />
       <Footer />
     </main>
   );
